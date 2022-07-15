@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	var str;
+	str = "변수 안에 데이터<br>";
+	
+	document.write(str);<!--출력-->
+
+	document.write("--------------------<br><br>");
+	document.write(str + ":" + typeof(str) + "<br/>");
+	str = 123;
+	document.write(str + ":" + typeof(str) + "<br/>");
+	str = true;
+	document.write(str + ":" + typeof(str) + "<br/>");
+	document.write("--------------<br><br>");
+	
+	var hello = "전역변수(hello)";
+	
+	function thisFunc() {
+		var hello = "지역변수(hello)"
+		global = "전역변수(G)"
+		var local = "지역변수(local)"
+		
+		document.write(hello + "<br>");
+		document.write(global + "<br>");
+		document.write(local + "<br>");
+		document.write("<br><br>");
+	}
+	thisFunc();
+	
+	document.write(hello + "<br>");
+	document.write(global + "<br>");
+	//document.write(local);
+	document.write("<br><br>");
+	document.write("------------------<br><br>");
+	
+	var num1=10, num2=3;
+	
+	document.write("num1 + num2 = " + (num1 + num2) + "<br>");
+	document.write("num1 - num2 = " + (num1 - num2) + "<br>");
+	document.write("num1 * num2 = " + (num1 * num2) + "<br>");
+	document.write("num1 / num2 = " + (num1 / num2) + "<br>");
+	document.write("num1 % num2 = " + (num1 % num2) + "<br>");
+	document.write("num1 > num2 = " + (num1 > num2) + "<br>");
+	document.write("num1 < num2 = " + (num1 < num2) + "<br>");
+		
+</script>
+
+</head>
+<body>
+
+</body>
+</html>
