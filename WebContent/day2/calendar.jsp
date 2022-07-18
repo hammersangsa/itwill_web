@@ -93,11 +93,11 @@ a {
 		<img src="./image/today.png" align="left"></a>
 		<select onchange="location.href=(value)">
 			<option><%=year %></option>
-			
+			<
 		</select>년
 
-		<select onchange="location.href=calendar.jsp?year=<%=year %>&month=<%=month%>">
-			<option value="month">1</option>
+		<select onchange="location.href=(value)">
+			<option>1</option>
 			<option>2</option>
 			<option>3</option>
 			<option>4</option>
