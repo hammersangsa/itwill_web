@@ -22,14 +22,6 @@ select1{
 	width: 150px;height: 43px;
 }
 
-img{
-    margin-top:40px;
-    width:55%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 table {
 	border-spacing:10px;font-size: 11pt;font-family: 돋움; 
 }
@@ -42,7 +34,13 @@ table {
 
 	<table>
 		<tr>
-			<td><img src="./image/naver.GIF"/></td>
+			<td>
+			<a href="www.naver.com">
+			<img style="margin-top:50px; width:55%;
+			 display: block;margin-left: auto;margin-right: auto;"
+			 src="./image/naver.GIF"/>
+			 </a>
+			</td>
 		</tr>
 	
 		<tr>
@@ -122,12 +120,20 @@ table {
 			<td><b>휴대전화</b></td>
 		</tr>
 		<tr>
-			<td><input type="text" class="box" ></td>
+			<td>
+			<select name="tel1"  style="width: 455px; height: 46px;">
+					<option>대한민국 +82</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
-			<td><input type="text" class="box" ><img src="./image/캡처1.JPG"/></td>
+			<td><input type="text" style="width:320px; height: 46px" >
+			<img style="width:120px; height: 50px; display: block; margin-left: auto;
+			 margin-right: auto;" align="right"
+			 src="./image/캡처1.JPG"/>
+			 </td>
 		</tr>
-		
+		<tr><td>&nbsp;<td></tr>
 		<tr>
 			<td><img src="./image/캡처2.JPG"/></td>
 		</tr>
