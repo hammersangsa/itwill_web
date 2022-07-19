@@ -2,6 +2,13 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
+	
+	
+	
+	
+	
+	
+	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,6 +38,19 @@ table {
 	border-spacing:10px;font-size: 11pt;font-family: 돋움; 
 }
 
+.step_url {
+    /*@naver.com*/
+    position: absolute;
+    top: 16px;
+    right: 13px;
+    font-size: 15px;
+    color: #8e8e8e;
+}
+
+.box.int_id {
+    padding-right: 110px;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -56,9 +76,7 @@ table {
 			f.userName.focus();
 			return;
 		}
-		
-		f.action = "<%=cp %>/html/naver.html";
-		//주소 입력 방법
+
 		f.submit();
 	}
 
@@ -66,13 +84,13 @@ table {
 
 </head>
 <body>
-<form action="" method="post" name="myForm">
+<form action="naver_ok.jsp" method="post" name="myForm">
 <center>
 
 	<table>
 		<tr>
 			<td>
-			<a href="www.naver.com">
+			<a href="http://www.naver.com">
 			<img style="margin-top:50px; width:55%;
 			 display: block;margin-left: auto;margin-right: auto;"
 			 src="./image/naver.GIF"/>
@@ -85,7 +103,9 @@ table {
 		</tr>
 		
 		<tr>	
-			<td><input type="text" class="box"  name="userId"></td>
+			<td>
+			<input type="text" class="box"  name="userId"  value="@naver.com">
+			</td>
 		</tr>
 		
 		<tr>
@@ -113,7 +133,7 @@ table {
 			<td><b>생년월일</b></td>
 		</tr>
 		<tr>
-			<td><input type="text" class="box1" >
+			<td><input type="text" class="box1" name="year">
 			<select name="month"  style="width: 145px; height: 46px;">
 					<option>월</option>
 					<option>1</option>
@@ -129,7 +149,7 @@ table {
 					<option>11</option>
 					<option>12</option>
 			</select>
-		<input type="text" class="box1" ></td>
+		<input type="text" class="box1" name="day" ></td>
 		</tr>
 		
 		<tr>
@@ -137,7 +157,7 @@ table {
 		</tr>
 		<tr>
 			<td>
-			<select name="month"  style="width: 455px; height: 46px;">
+			<select name="gender"  style="width: 455px; height: 46px;">
 					<option>성별</option>
 					<option>남자</option>
 					<option>여자</option>
@@ -150,7 +170,7 @@ table {
 			<td><b>본인 확인 이메일</b>(선택)</td>
 		</tr>
 		<tr>
-			<td><input type="text" class="box"  ></td>
+			<td><input type="text" class="box" name="email"  ></td>
 		</tr>
 		
 		<tr>
@@ -164,7 +184,7 @@ table {
 			</td>
 		</tr>
 		<tr>
-			<td><input type="text" style="width:320px; height: 46px" >
+			<td><input type="text" name="tel2" style="width:320px; height: 46px" >
 			<img style="width:120px; height: 50px; display: block; margin-left: auto;
 			 margin-right: auto;" align="right"
 			 src="./image/캡처1.JPG"/>
@@ -172,7 +192,9 @@ table {
 		</tr>
 		<tr><td>&nbsp;<td></tr>
 		<tr>
-			<td><img src="./image/캡처2.JPG"/></td>
+			<td><input type="image" src="./image/캡처2.JPG" value="회원정보" onclick="sendIt();"
+			style="">
+<!-- <img src="./image/캡처2.JPG"/> --></td>
 		</tr>
 	</table>
 	
