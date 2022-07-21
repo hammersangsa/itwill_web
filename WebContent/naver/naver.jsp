@@ -1,0 +1,186 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String cp = request.getContextPath();
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>네이버 : 회원가입</title>
+
+<style type="text/css">
+
+body{
+    background-color: #f5f6f7;
+}
+
+input.box {
+	border: 1px solid #c8c8c8;width: 450px;height: 43px;
+}
+
+input.box1 {
+	border: 1px solid #c8c8c8;width: 145px;height: 43px;
+}
+
+select1{
+	width: 150px;height: 43px;
+}
+
+table {
+	border-spacing:10px;font-size: 11pt;font-family: 돋움; 
+}
+
+.box.int_id {
+    padding-right: 110px;
+}
+
+</style>
+
+<script type="text/javascript">
+	function sendIt(){
+		var f = document.myForm;
+		
+		if(!f.userId.value){
+			alert("아이디를 입력하세요!");
+			f.userId.focus();
+			return;
+		}
+		
+		if(!f.userPwd.value){
+			alert("패스워드를 입력하세요!");
+			f.userPwd.focus();
+			return;
+		}
+		
+		if(!f.userName.value){
+			alert("이름을 입력하세요!");
+			f.userName.focus();
+			return;
+		}
+
+		f.action = "<%=cp%>/naver/naver_ok.jsp";
+		f.submit();
+	}
+
+</script>
+
+</head>
+<body>
+<form action="" method="post" name="myForm">
+<center>
+
+	<table>
+		<tr>
+			<td>
+			<a href="http://www.naver.com">
+			<img style="margin-top:50px; width:55%;
+			 display: block;margin-left: auto;margin-right: auto;"
+			 src="./image/naver.GIF"/>
+			 </a>
+			</td>
+		</tr>
+	
+		<tr>
+			<td><b>아이디</b></td>
+		</tr>
+		
+		<tr>	
+			<td>
+			<input type="text" class="box"  name="userId">
+			</td>
+		</tr>
+		
+		<tr>
+			<td><b>비밀번호</b></td>
+		</tr>
+		<tr>
+			<td><input type="text" class="box" name="userPwd" ></td>
+		</tr>
+
+		<tr>
+			<td><b>비밀번호 재확인</b></td>
+		</tr>
+		<tr>
+			<td><input type="text" class="box" ></td>
+		</tr>
+		
+		<tr>
+			<td><b>이름</b></td>
+		</tr>
+		<tr>
+			<td><input type="text" class="box" name="userName"></td>
+		</tr>
+
+		<tr>
+			<td><b>생년월일</b></td>
+		</tr>
+		<tr>
+			<td><input type="text" class="box1" name="year">
+			<select name="month"  style="width: 145px; height: 46px;">
+					<option>월</option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+					<option>11</option>
+					<option>12</option>
+			</select>
+		<input type="text" class="box1" name="day" ></td>
+		</tr>
+		
+		<tr>
+			<td><b>성별</b></td>
+		</tr>
+		<tr>
+			<td>
+			<select name="gender"  style="width: 455px; height: 46px;">
+					<option>성별</option>
+					<option>남자</option>
+					<option>여자</option>
+					<option>선택안함</option>
+			</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td><b>본인 확인 이메일</b>(선택)</td>
+		</tr>
+		<tr>
+			<td><input type="text" class="box" name="email"  ></td>
+		</tr>
+		
+		<tr>
+			<td><b>휴대전화</b></td>
+		</tr>
+		<tr>
+			<td>
+			<select name="tel1"  style="width: 455px; height: 46px;">
+					<option>대한민국 +82</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="text" name="tel2" style="width:320px; height: 46px" >
+			<img style="width:120px; height: 50px; display: block; margin-left: auto;
+			 margin-right: auto;" align="right"
+			 src="./image/캡처1.JPG"/>
+			 </td>
+		</tr>
+		<tr><td>&nbsp;<td></tr>
+		<tr>
+			<td>
+			<input type="image" src="./image/캡처2.JPG" value="회원정보" onclick="sendIt();">
+			</td>
+		</tr>
+	</table>
+	
+</center>
+</form>
+</body>

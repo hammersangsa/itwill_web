@@ -217,11 +217,10 @@ align="center">
 		
 		out.print("</tr>");
 		
-%>
-		<%} %>	
+	%>
+	<%} %>	
 	</table>
-	</form>
-		
+	</form>	
 	
 	</td>
 </tr>

@@ -19,22 +19,6 @@ body{
     background-color: #f5f6f7;
 }
 
-input.box {
-	border: 1px solid #c8c8c8;width: 450px;height: 43px;
-}
-
-input.box1 {
-	border: 1px solid #c8c8c8;width: 145px;height: 43px;
-}
-
-select1{
-	width: 150px;height: 43px;
-}
-
-table {
-	border-spacing:10px;font-size: 11pt;font-family: 돋움; 
-}
-
 </style>
 
 </head>
