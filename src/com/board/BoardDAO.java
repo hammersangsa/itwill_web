@@ -65,8 +65,9 @@ public class BoardDAO {
 		}
 		return result;
 	}
-	//전체데이터 가져오기
-	public List<BoardDTO> getLists(){
+	//전체데이터 가져오기(4개의 변수)
+	public List<BoardDTO> getLists(int start, int end, 
+			String searchKey,String searchValue){
 		
 		List<BoardDTO> lists = new ArrayList<BoardDTO>();
 		
@@ -75,11 +76,21 @@ public class BoardDAO {
 		String sql;
 		
 		try {
-			sql = "select num,name,subject,hitCount,";
+			searchValue = "%" + searchValue + "%";
+			
+			
+			sql = "select * from (";
+			sql+= "select rownum rnum,data.* from (";
+			sql+= "select num,name,subject,hitCount,";
 			sql+= "to_char(created,'YYYY-MM-DD') created ";
-			sql+= "from board order by num desc";
+			//sql+= "from board order by num desc) data ) ";
+			sql+= "from board where " + searchKey + " like ? order by num desc) data) ";
+			sql+= "where rnum>=? and rnum<=?";
 			
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, searchValue);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			
 			rs = pstmt.executeQuery();
 			
@@ -101,6 +112,137 @@ public class BoardDAO {
 		}
 		return lists;
 	}
-	
-	
+	//전체데이터의 개수
+	public int getDataCount(String searchKey,String searchValue) {
+		
+		int dataCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		
+		try {
+			searchValue = "%" + searchValue + "%";
+			
+			sql = "select nvl(count(*),0) from board ";
+			sql+= "where " + searchKey + " like ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, searchValue);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dataCount = rs.getInt(1);//파생컬럼이므로 1(이름없음)
+			}
+			rs.close();
+			pstmt.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dataCount;
+	}
+	//num으로 한개의 데이터 가져오기
+	public BoardDTO getReadData(int num) {
+		
+		BoardDTO dto = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		
+		try {
+			sql = "select num,name,pwd,email,subject,content,";
+			sql+= "ipAddr,hitCount,created from board where num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new BoardDTO();
+				
+				dto.setNum(rs.getInt("num"));
+				dto.setName(rs.getString("name"));
+				dto.setPwd(rs.getString("pwd"));
+				dto.setEmail(rs.getString("email"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				dto.setIpAddr(rs.getString("ipAddr"));
+				dto.setHitCount(rs.getInt("hitCount"));
+				dto.setCreated(rs.getString("created"));
+			}
+			rs.close();
+			pstmt.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return dto;
+	}
+	//조회수 증가
+	public int updateHitCount(int num) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			sql = "update board set hitCount = hitCount + 1 where num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+	//수정
+	public int updateData(BoardDTO dto) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql;
+
+		try {
+			sql = "update board set name=?,pwd=?,email=?,subject=?,";
+			sql+= "content=? where num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getPwd());
+			pstmt.setString(3, dto.getEmail());
+			pstmt.setString(4, dto.getSubject());
+			pstmt.setString(5, dto.getContent());
+			pstmt.setInt(6, dto.getNum());
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+	//삭제
+	public int deleteData(int num) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql;
+		 
+		try {
+			sql = "delete board where num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
 }
