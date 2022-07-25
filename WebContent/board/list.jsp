@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="com.util.MyPage"%>
 <%@page import="com.board.BoardDTO"%>
@@ -38,27 +39,45 @@
 		searchKey = "subject";
 		searchValue = "";		
 	}
-	
 	//검색--------------------------------------
 
 	//전체데이터개수 구하기
 	int dataCount = dao.getDataCount(searchKey, searchValue);
+	
 	//하나의 페이지에 보여줄 데이터 개수
 	int numPerPage = 5;
+	
 	//전체페이지 개수
 	int totalPage = myPage.getPageCount(numPerPage, dataCount);
+	
 	//삭제 시의 페이지 수가 줄었을 때의 처리방법
 	if(currentPage>totalPage){
 		currentPage=totalPage;
 	}
+	
 	//데이터베이스에서 가져올 rownum의 시작과 끝
 	int start = (currentPage-1)*numPerPage+1;
 	int end = currentPage*numPerPage;
 	
 	List<BoardDTO> lists = dao.getLists(start, end, searchKey, searchValue);
+	
 	//페이징 처리
+	String param = "";
+	if(!searchValue.equals("")) {
+		param = "?searchKey=" + searchKey;
+		param+= "&searchValue=" + URLEncoder.encode(searchValue, "UTF-8");
+	}
 	String listUrl = "list.jsp";
-	String pageIndexList = myPage.pageIndexList(currentPage, totalPage, listUrl);
+	String pageIndexList = 
+			myPage.pageIndexList(currentPage, totalPage, listUrl);
+	
+	//글보기 주소
+	String articleUrl = cp + "/board/article.jsp";
+	if(param.equals("")){
+		articleUrl += "?pageNum=" + currentPage;
+	}else{
+		articleUrl += param + "&pageNum=" + currentPage;
+	}
 	
 	DBConn.close();
 %>
@@ -79,6 +98,7 @@
 		
 		f.action = "<%=cp%>/board/list.jsp";
 		f.submit();
+		
 	}
 
 </script>
@@ -126,7 +146,7 @@
 			<dl>
 				<dd class="num"><%=dto.getNum() %></dd>				
 				<dd class="subject">
-				<a href="<%=cp%>/board/article.jsp?num=<%=dto.getNum() %>&pageNum=<%=currentPage%>">
+				<a href="<%=articleUrl%>&num=<%=dto.getNum() %>">
 				<%=dto.getSubject() %>
 				</a>
 				</dd>			
