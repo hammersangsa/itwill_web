@@ -37,6 +37,7 @@
 
 1. <a href="<%=cp%>/score/list.jsp">성적처리 게시판(JSP)</a><br/>
 2. <a href="<%=cp%>/board/list.jsp">게시판(JSP)</a><br/>
+3. <a href="<%=cp%>/guest/guest.jsp">방명록(JSP)</a><br/>
 
 
 </body>

@@ -14,6 +14,8 @@
 	
 	MyPage myPage = new MyPage();
 	
+	List<GuestDTO> lists = null;
+
 	//MyPage에서 넘어온 페이지 넘기기
 	String pageNum	= request.getParameter("pageNum");
 	int currentPage = 1;//처음실행값
@@ -26,10 +28,15 @@
 	int dataCount = dao.getDataCount();
 	
 	//하나의 페이지에 보여줄 데이터 개수
-	int numPerPage = 5;
+	int numPerPage = 3;
 	
 	//전체페이지 개수
-	int totalPage = myPage.getPageCount(numPerPage, dataCount);
+	int totalPage = 0;
+    
+    if(dataCount != 0){  //페이징 작업
+  	  totalPage = 
+  	 	 myPage.getPageCount(numPerPage, dataCount);
+    }
 	
 	//삭제 시의 페이지 수가 줄었을 때의 처리방법
 	if(currentPage>totalPage){
@@ -39,8 +46,8 @@
 	int start = (currentPage-1)*numPerPage+1;
 	int end = currentPage*numPerPage;
 	
-	List<GuestDTO> lists = dao.getLists(start, end);
-	
+	lists = dao.getLists(start, end);
+ 
 	//페이징 처리
 	String listUrl = "guest.jsp";
 	String pageIndexList = 
@@ -62,7 +69,7 @@
 <script type="text/javascript">
     function isDelete(num)  {
     	
-		if (confirm("위 자료를 삭제하시겠습니까 ?")) {
+		if (confirm("방명록을 삭제하시겠습니까 ?")) {
 			location.href="<%=cp%>/guest/delete.jsp?num=" + num;
 		}
     }
@@ -129,8 +136,8 @@ borderColor="#D6D4A6" style="margin: auto;">
   <table width="560" border="0" cellspacing="0" cellpadding="3" style="margin: auto;">
      <tr align="center"> 
       <td height="40">
-        <input type="button" value=" 등록하기 " onclick="sendIt()" class="btn1"/>
-        <input type="reset"  value=" 다시입력 " onclick="document.myForm.name.focus();" class="btn1"/>
+        <input type="button" value=" 등록하기 " onclick="sendIt()" class="btn2"/>
+        <input type="reset"  value=" 다시입력 " onclick="document.myForm.name.focus();" class="btn2"/>
       </td>
     </tr>
   </table>
@@ -145,26 +152,49 @@ borderColor="#D6D4A6" style="margin: auto;">
 	<td align="left" bgcolor="#EEEEEE">
 	<strong>No <%=dto.getNum() %>.<%=dto.getName() %>(<%=dto.getEmail() %>)</strong>
 	</td>
-	<td align="right" bgcolor="#EEEEEE">홈페이지 : <%=dto.getHomepage() %></td>
+	<td align="right" bgcolor="#EEEEEE">홈페이지 :
+		<a href="<%=dto.getHomepage() %>" target="_blank"><%=dto.getHomepage() %></a> </td>
 </tr>
 <tr height="30">	
 	<td align="left" bgcolor="#EEEEEE">
 	작성일 : <%=dto.getCreated() %>(<%=dto.getIpAddr() %>)
 	</td>
 	<td align="right" bgcolor="#EEEEEE">
-	<a href="<%=cp %>/guest/delete.jsp?num=<%=dto.getNum()%>">삭제</a>
+	<a href="javascript:isDelete('<%=dto.getNum()%>')">삭제</a>
 	</td>
 </tr>
    <tr><td colspan="2" height="1"  bgcolor="#DBDBDB"></td></tr>
-
 <tr>
 	<td align="left" bgcolor="#ffffff"><%=dto.getContent() %></td>
 </tr>
+<tr><td><br></td></tr>
 <tr><td colspan="2" height="3"  bgcolor="#DBDBDB" align="center"></td></tr>
 
 <%} %>
-
 </table>
+
+
+<% if(dataCount == 0) { %>
+  <table width="560" border="0" cellpadding="0" cellspacing="0" bgcolor="#EEEEEE" style="margin: auto;">
+      <tr align="center" height="50"> 
+       <td>
+         <b>등록된 자료가 없습니다.</b>
+       </td>
+     </tr>
+  </table>
+  <table width="560" border="0" cellpadding="0" cellspacing="0" style="margin: auto;">
+  <tr><td colspan="2" bgcolor="#DBDBDB" height="3"></td></tr>
+  </table>
+  
+<%}else{%>
+  <table width="560" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="margin: auto;">
+      <tr align="center" height="30"> 
+       <td>
+         <%=pageIndexList%>
+       </td>
+     </tr>
+  </table>
+<%} %>
 
 </body>
 </html>

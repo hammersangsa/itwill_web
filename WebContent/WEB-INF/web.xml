@@ -9,4 +9,61 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>helloServlet</servlet-name>
+  	<servlet-class>com.svt.Test1</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>helloServlet</servlet-name>
+  	<url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 1.ServletConfig 인터페이스  -->
+  <!-- 해당 서블릿(class)에서만 사용 가능 -->
+  <servlet>
+  	<servlet-name>test2Servlet</servlet-name>
+  	<servlet-class>com.svt.Test2</servlet-class>
+  		<init-param>
+  			<param-name>name</param-name>
+  			<param-value>배수지</param-value>
+  		</init-param>
+  		<init-param>
+  			<param-name>age</param-name>
+  			<param-value>27</param-value>
+  		</init-param>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>test2Servlet</servlet-name>
+  	<url-pattern>/itwill</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 2.ServletContext 인터페이스  -->
+  <context-param>
+  	<param-name>gender</param-name>
+  	<param-value>여자</param-value>
+  </context-param>
+  
+  <servlet>
+  	<servlet-name>test3Servlet</servlet-name>
+  	<servlet-class>com.svt.Test3</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>test3Servlet</servlet-name>
+  	<url-pattern>/ss1</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Servlet 게시판 -->
+  <servlet>
+  	<servlet-name>boardServlet</servlet-name>
+  	<servlet-class>com.board.BoardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>boardServlet</servlet-name>
+  	<url-pattern>/bbs/*</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>

@@ -75,7 +75,7 @@ public class GuestDAO {
 		try {
 			sql = "select * from (";
 			sql+= "select rownum rnum,data.* from (";
-			sql+= "select num,name,email,homepage,to_char(created,'YYYY-MM-DD') created,";
+			sql+= "select num,name,email,homepage,to_char(created,'YYYY-MM-DD hh:mm:ss') created,";
 			sql+= "ipAddr,content from guest order by num desc) data ) ";
 			sql+= "where rnum>=? and rnum<=?";
 			

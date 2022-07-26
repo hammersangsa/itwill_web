@@ -31,7 +31,12 @@ public class GuestDTO {
 		return homepage;
 	}
 	public void setHomepage(String homepage) {
-		this.homepage = homepage;
+		if(homepage == null)
+			this.homepage="";
+		else if(homepage.equalsIgnoreCase("http://"))
+			this.homepage="";
+		else
+			this.homepage=homepage;
 	}
 	public String getContent() {
 		return content;
