@@ -13,6 +13,8 @@ public class ScoreDTO {
 	private int ave;
 	private int rank;
 	
+	private int num;
+	
 	public String getHak() {
 		return hak;
 	}
@@ -60,5 +62,10 @@ public class ScoreDTO {
 	}
 	public void setRank(int rank) {
 		this.rank = rank;
+	}
+	public void setNum(int i) {
+	}
+	public int getNum() {
+		return num;
 	}
 }

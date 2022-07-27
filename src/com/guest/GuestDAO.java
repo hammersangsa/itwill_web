@@ -123,6 +123,7 @@ public class GuestDAO {
 			if(rs.next()) {
 				dataCount = rs.getInt(1);//파생컬럼이므로 1(이름없음)
 			}
+			
 			rs.close();
 			pstmt.close();
 		} catch (Exception e) {

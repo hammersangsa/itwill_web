@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -22,23 +23,23 @@
 	<div id="bbsArticle">
 	
 		<div id="bbsArticle_header">
-			게시물 제목
+			${dto.subject }
 		</div>
 		<div class="bbsArticle_bottomLine">
 			<dl>
 				<dt>작성자</dt>
-				<dd>배수지</dd>
+				<dd>${dto.name }</dd>
 				<dt>줄수</dt>
-				<dd>10</dd>
+				<dd>${lineSu }</dd>
 			</dl>		
 		</div>
 		
 		<div class="bbsArticle_bottomLine">
 			<dl>
 				<dt>등록일</dt>
-				<dd>2022-07-21</dd>
+				<dd>${dto.created }</dd>
 				<dt>조회수</dt>
-				<dd>25</dd>
+				<dd>${dto.hitCount }</dd>
 			</dl>		
 		</div>
 		
@@ -46,7 +47,7 @@
 			<table width="600" border="0">
 			<tr>
 				<td style="padding: 20px 80px 20px 62px;" valign="top" height="200">
-				 게시글 내용
+				 ${dto.content }
 				 </td>
 			</tr>
 			</table>
@@ -55,20 +56,21 @@
 	</div>
 
 	<div class="bbsArticle_noLine" style="text-align: right;">
-		From : 127.0.0.1
+		From : ${dto.ipAddr }
 	</div>
 	
 	<div id="bbsArticle_footer">
 		<div id="leftFooter">
-			<input type="button" value=" 수정 " class="btn2" onclick=""/>
-			<input type="button" value=" 삭제 " class="btn2" onclick=""/>
+			<input type="button" value=" 수정 " class="btn2" 
+			onclick="location='<%=cp%>/bbs/updated.do?num=${dto.num }&${params }'"/>
+			<input type="button" value=" 삭제 " class="btn2" 
+			onclick="location='<%=cp%>/bbs/deleted_ok.do?num=${dto.num }&${params }'"/>
 		</div>
 		<div id="rightFooter">
-			<input type="button" value=" 리스트 " class="btn2" onclick=""/>
+			<input type="button" value=" 리스트 " class="btn2" 
+			onclick="location='<%=cp%>/bbs/list.do?${params }';"/>
 		</div>
 	</div>
-
-
 </div>
 
 </body>

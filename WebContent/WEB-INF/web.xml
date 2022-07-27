@@ -65,5 +65,15 @@
   	<url-pattern>/bbs/*</url-pattern>
   </servlet-mapping>
   
+  <!-- Servlet 성적 처리 -->
+   <servlet>
+  	<servlet-name>scoreServlet</servlet-name>
+  	<servlet-class>com.score.ScoreServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>scoreServlet</servlet-name>
+  	<url-pattern>/sung/*</url-pattern>
+  </servlet-mapping>
+  
   
 </web-app>

@@ -52,9 +52,10 @@ public class ScoreDAO {
 			sql = "select hak,name,kor,eng,mat,";
 			sql+= "(kor+eng+mat) tot,(kor+eng+mat)/3 ave,";
 			sql+= "rank() over (order by (kor+eng+mat) desc) rank ";
-			sql+= "from score";
+			sql+= "from score;";
 			
 			pstmt = conn.prepareStatement(sql);
+
 			rs = pstmt.executeQuery();
 					
 			while(rs.next()) {
@@ -159,6 +160,5 @@ public class ScoreDAO {
 		}
 		return result;
 	}
-	
 	
 }
