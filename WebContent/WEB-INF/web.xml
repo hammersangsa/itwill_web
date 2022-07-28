@@ -75,5 +75,15 @@
   	<url-pattern>/sung/*</url-pattern>
   </servlet-mapping>
   
+   <!-- Servlet 회원가입 -->
+   <servlet>
+  	<servlet-name>memberServlet</servlet-name>
+  	<servlet-class>com.join.MemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>memberServlet</servlet-name>
+  	<url-pattern>/join/*</url-pattern>
+  </servlet-mapping>
+  
   
 </web-app>
