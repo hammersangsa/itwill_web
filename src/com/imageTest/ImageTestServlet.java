@@ -101,7 +101,7 @@ public class ImageTestServlet extends HttpServlet {
 			}
 			
 			int dataCount = dao.getDataCount();
-			int numPerPage = 5;
+			int numPerPage = 6;
 			int totalPage = myPage.getPageCount(numPerPage, dataCount);
 			
 			if(currentPage>totalPage) {

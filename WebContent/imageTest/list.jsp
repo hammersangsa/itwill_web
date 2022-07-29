@@ -29,7 +29,7 @@ borderColor="#D6D4A6" style="margin: auto;">
  <table width="560" border="0" cellspacing="0" cellpadding="3" style="margin: auto;">
 
 <tr>
-	<td>
+	<td colspan="2">
 	Total ${dataCount } articles, ${totalPage } pages / Now page is ${currentPage }</td>
 	<td align="right" colspan="4">
 	<input type="button" value=" 게시물등록 " class="btn2"
@@ -37,28 +37,29 @@ borderColor="#D6D4A6" style="margin: auto;">
 	</td>
 </tr>
 
-<tr><td colspan="2" height="3" bgcolor="#DBDBDB" align="center"></td></tr>
+<tr><td colspan="3" height="3" bgcolor="#DBDBDB" align="center"></td></tr>
 
 <c:set var="i" value="0" />
 <c:set var="j" value="3" />
 
 <c:forEach var="dto" items="${lists }">
-  
-<tr>
+  <c:if test="{i%j == 0}">
+ 		 <tr>
+  </c:if>
 	<td align="center" width="250">
 	<img src="${imagePath }/${dto.saveFileName }" width="180" height="180"/>
-	</td>
-</tr>
-
-<tr>
-	<td align="center" width="50">
 	${dto.num }&nbsp;<a href="${deletePath }?num=${dto.num }">삭제</a>
-	</td>
-</tr>
-</c:forEach>
 	
-<tr align="center"><td> ${pageIndexList } </td></tr>
-<tr><td colspan="2" height="3" bgcolor="#DBDBDB" align="center"></td></tr>
+	</td>
+	<c:if test="${i%j == j-1 }">
+		</tr>	
+	</c:if>
+<c:set var="i" value="${i+1 }"/>
+</c:forEach>
+
+	
+<tr align="center"><td colspan="3"> ${pageIndexList } </td></tr>
+<tr><td colspan="3" height="3" bgcolor="#DBDBDB" align="center"></td></tr>
 
 </table>
 </body>
