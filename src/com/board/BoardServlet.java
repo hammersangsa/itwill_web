@@ -36,7 +36,7 @@ public class BoardServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		req.setCharacterEncoding("UTF-8");
+		//req.setCharacterEncoding("UTF-8");
 		String cp = req.getContextPath();
 		String uri = req.getRequestURI();
 
