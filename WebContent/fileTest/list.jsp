@@ -33,12 +33,11 @@
 	<td align="center" width="50">${dto.num }</td>
 	<td align="left" width="150">${dto.subject }</td>
 	<td align="left" width="250">
-	<%-- <a href="${downloadPath }?num=${dto.num }">
+	<a href="${downloadPath }?num=${dto.num }">
 	${dto.originalFileName }
-	</a> --%>
+	</a>
 	
 	<img src="${imagePath }/${dto.saveFileName }" width="180" height="180"/>
-	
 	
 	</td>
 	<td align="center" width="50">

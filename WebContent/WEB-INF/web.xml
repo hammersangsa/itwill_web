@@ -85,6 +85,14 @@
   	<servlet-name>imageServlet</servlet-name>
   	<url-pattern>/image/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>productServlet</servlet-name>
+    <servlet-class>com.product.ProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>productServlet</servlet-name>
+    <url-pattern>/pdct/*</url-pattern>
+  </servlet-mapping>
    <!-- 타이머 필터
   <filter>
  	<filter-name>timerFilter</filter-name>
@@ -108,6 +116,7 @@
   	<filter-name>charFilter</filter-name>
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
+   
   <!-- 로그인 필터 
   <filter>
  	<filter-name>loginFilter</filter-name>

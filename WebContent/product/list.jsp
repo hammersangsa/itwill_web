@@ -8,9 +8,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>이미지 게시판</title>
+<title>Product List</title>
 
-<link rel="stylesheet" type="text/css" href="<%=cp%>/imageTest/data/style.css"/>
+<link rel="stylesheet" type="text/css" href="<%=cp%>/product/oserafim//css/style.css"/>
 
 </head>
 <body>
@@ -20,7 +20,7 @@
 borderColor="#D6D4A6" style="margin: auto;">
 <tr height="40"> 
 <td style="padding-left:20px;">
-<b>이미지 게시판</b>
+<b>Product List</b>
 </td>
 </tr>
 </table>
@@ -31,13 +31,11 @@ borderColor="#D6D4A6" style="margin: auto;">
 <tr>
 	<td colspan="2">
 	Total ${dataCount } articles, ${totalPage } pages / Now page is ${currentPage }</td>
-	<td align="right" colspan="4">
-	<input type="button" value=" 게시물등록 " class="btn2"
-		onclick="location='<%=cp%>/image/write.do';"/>
+	<td align="right" colspan="3">
+	<input type="button" value=" Insert Product " class="btn2"
+		onclick="location='<%=cp%>/pdct/write.do';"/>
 	</td>
 </tr>
-
-<tr><td colspan="3" height="3" bgcolor="#DBDBDB" align="center"></td></tr>
 
 <c:set var="i" value="0" />
 <c:set var="j" value="3" />
@@ -47,9 +45,10 @@ borderColor="#D6D4A6" style="margin: auto;">
  		 <tr>
   </c:if>
 	<td align="center" width="250">
-	<img src="${imagePath }/${dto.saveFileName }" width="180" height="180"/>
-	${dto.num }&nbsp;<a href="${deletePath }?num=${dto.num }">삭제</a>
-	
+	<a href="${articleUrl }&pNum=${dto.pNum}">
+	<img src="${imagePath }/${dto.img }" width="180" height="180"/>
+	</a><br/>
+	${dto.productName }
 	</td>
 	<c:if test="${i%j == j-1 }">
 		</tr>	

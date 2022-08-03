@@ -146,7 +146,7 @@ public class ImageTestServlet extends HttpServlet {
 				return;
 			}
 			
-			boolean flag =
+/*			boolean flag =
 					FileManager.doFileDownload(resp, dto.getSaveFileName(),
 							dto.getOriginalFileName(), path);
 			
@@ -161,7 +161,7 @@ public class ImageTestServlet extends HttpServlet {
 				out.print("history.back();");
 				out.print("</script>");
 				
-			}
+			}*/
 			
 		}else if(uri.indexOf("deleted.do")!=-1) {
 			

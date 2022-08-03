@@ -10,8 +10,13 @@ public class DBConn {
 	public static Connection getConnection() {
 		
 		String url = "jdbc:oracle:thin:@192.168.16.25:1521:xe";
-		String user = "suzi";
-		String pwd = "a123";
+		
+		String user = "project2";
+		String pwd = "p123";
+		
+		
+		/*String user = "suzi";
+		String pwd = "a123";*/
 		
 		if(conn==null) {
 			try {

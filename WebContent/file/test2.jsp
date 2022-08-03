@@ -10,7 +10,7 @@
 	String upload = request.getParameter("upload"); */
 	
 	String contentType = request.getContentType();
-	Enumeration er = request.getHeaderNames();
+	Enumeration<?> er = request.getHeaderNames();
 	
 	out.print("전송받은 헤더 정보...<br/>");
 	while(er.hasMoreElements()) {

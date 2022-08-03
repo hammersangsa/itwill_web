@@ -22,6 +22,5 @@ public class ContextListenerTest implements ServletContextListener{
 		sc.setAttribute("name", "Servlet");*/
 		
 	}
-
 	
 }

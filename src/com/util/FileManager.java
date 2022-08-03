@@ -11,19 +11,18 @@ public class FileManager {
 
 	//파일 다운로드
 	public static boolean doFileDownload(HttpServletResponse response, 
-			String saveFileName, String originalFileName, String path) {
+			String img, String img2, String path) {
 		
 		try {
 			
-			String fullPath = path + File.separator + saveFileName;
+			String fullPath = path + File.separator + img;
 			
-			if(originalFileName==null || originalFileName.equals("")) {
-				originalFileName = saveFileName;
+			if(img2==null || img2.equals("")) {
+				img2 = img;
 			}
-			
 			//한글파일이름 깨짐 방지
-			originalFileName = 
-				new String(originalFileName.getBytes("euc-kr"), "ISO-8859-1");
+			img2 = 
+				new String(img2.getBytes("euc-kr"), "ISO-8859-1");
 			
 			File f = new File(fullPath);
 			
@@ -34,7 +33,7 @@ public class FileManager {
 			//파일 다운로드
 			response.setContentType("application/octet-stream");
 			response.setHeader("Content-disposition",
-					"attachment;fileName=" + originalFileName);
+					"attachment;fileName=" + img2);
 			
 			BufferedInputStream bis = 
 					new BufferedInputStream(new FileInputStream(f));

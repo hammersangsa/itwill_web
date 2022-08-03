@@ -15,7 +15,6 @@ public class CountManager implements HttpSessionListener{
 	public CountManager() {
 		countManager = this;
 	}
-	
 	public static synchronized CountManager getInstance() throws Exception{
 		
 		if(countManager==null) {
@@ -27,7 +26,6 @@ public class CountManager implements HttpSessionListener{
 	public static int getCount() {
 		return count;
 	}	
-	
 	@Override
 	public void sessionCreated(HttpSessionEvent evt) {
 		
@@ -39,7 +37,6 @@ public class CountManager implements HttpSessionListener{
 		System.out.print(session.getId() + ":技记积己, ");
 		System.out.println("立加磊荐: " + count);
 	}
-
 	@Override
 	public void sessionDestroyed(HttpSessionEvent evt) {
 		
@@ -51,6 +48,4 @@ public class CountManager implements HttpSessionListener{
 		System.out.println("立加磊荐: " + count);
 	}
 
-	
-	
 }

@@ -116,7 +116,7 @@ public class FileTestServlet extends HttpServlet {
 				return;
 			}
 			
-			boolean flag =
+			/*boolean flag =
 					FileManager.doFileDownload(response, dto.getSaveFileName(),
 							dto.getOriginalFileName(), path);
 			
@@ -132,7 +132,7 @@ public class FileTestServlet extends HttpServlet {
 				out.print("</script>");
 				
 			}//돌아가는 코딩은 불필요(페이지에 머물러야 하므로)
-			
+*/			
 		}else if(uri.indexOf("deleted.do")!=-1) {
 			
 			int num = Integer.parseInt(request.getParameter("num"));
